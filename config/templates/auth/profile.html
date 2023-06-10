@@ -54,7 +54,7 @@
   <li class="sidebar__item">
     <a class="sidebar__link main__sidebar--lastchild" href="#">
       <img src="{% static 'image/sidebar-user.svg' %}" alt="User Icon">
-      <span>Chala developer</span>
+      <span>{{request.user.username}}</span>
     </a>
   </li>
 </ul>
@@ -68,7 +68,7 @@
       </div>
       <div class="site-logo">
         <div class="header__logo">T</div>
-        <span class="header__name">Topshiriq Menejeri</span>
+        <span class="header__name"><a href="/">Topshiriq Menejeri</a></span>
       </div>
       <div class="site-time">
         <p class="day"></p>
@@ -112,7 +112,7 @@
         <li class="main__sidebar--item">
           <a class="main__sidebar--link main__sidebar--lastchild" href="#">
             <img src="{% static 'image/sidebar-user.svg' %}" alt="User Icon">
-            <span>Chala developer</span>
+            <span>{{request.user.username}}</span>
           </a>
         </li>
       </ul>
@@ -244,7 +244,7 @@
               <p>Tahrirlash</p>
             </span>
             <span class="main__account--username">
-              <h4>Chala Developer</h4>
+              <h4>{{request.user.username}}</h4>
               <span>online</span>
             </span>
             <span class="small">UI&UX designer</span>

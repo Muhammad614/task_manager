@@ -1,12 +1,14 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./css/bootstrap.css" />
-		<link rel="stylesheet" href="./css/profile.css">
-		<link rel="stylesheet" href="./css/task-list.css">
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+		<link rel="stylesheet" href="{% static 'css/task-list.css' %}">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   	  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
   	  crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -44,32 +46,32 @@
 				<div class="main-inner">
 					<ul class="main__sidebar" style="padding: 0;">
 						<li class="main__sidebar--item">
-							<a class="main__sidebar--link" href="#">
-								<img src="./image/sidebar-streamline.svg" alt="Streamline">
+							<a class="main__sidebar--link" href="#" style="text-decoration: none;">
+								<img src="{% static 'image/sidebar-streamline.svg' %}" alt="Streamline">
 								<span>Topshiriqlar</span>
 							</a>
 						</li>
 						<li class="main__sidebar--item">
-							<a class="main__sidebar--link" href="#">
-								<img src="./image/sidebar-chat.svg" alt="Chat">
+							<a class="main__sidebar--link" href="#" style="text-decoration: none;">
+								<img src="{% static 'image/sidebar-chat.svg' %}" alt="Chat">
 								<span>Chat</span>
 							</a>
 						</li>
 						<li class="main__sidebar--item">
-							<a class="main__sidebar--link" href="#">
-								<img src="./image/sidebar-team.svg" alt="Team">
+							<a class="main__sidebar--link" href="#" style="text-decoration: none;">
+								<img src="{% static 'image/sidebar-team.svg' %}" alt="Team">
 								<span>Jamoa</span>
 							</a>
 						</li>
 						<li class="main__sidebar--item">
-							<a class="main__sidebar--link" href="#">
-								<img src="./image/sidebar-calendar.svg" alt="Team">
+							<a class="main__sidebar--link" href="#" style="text-decoration: none;">
+								<img src="{% static 'image/sidebar-calendar.svg' %}" alt="Team">
 								<span>Kalendar</span>
 							</a>
 						</li>
 						<li class="main__sidebar--item">
-							<a class="main__sidebar--link main__sidebar--lastchild" href="#">
-								<img src="./image/sidebar-user.svg" alt="User Icon">
+							<a class="main__sidebar--link main__sidebar--lastchild" href="#" style="text-decoration: none;">
+								<img src="{% static 'image/sidebar-user.svg' %}" alt="User Icon">
 								<span>Chala developer</span>
 							</a>
 						</li>
@@ -78,7 +80,7 @@
 					<div class="col-12 col-lg-9 pt-4">
 						<div id="task" class="shadow py-3 rounded-4 my-2">
 							<div class="mx-2 my-1" id="task-group">
-								<img src="./image/correct-icon.png" alt="icon" width="30" />
+								<img src="{% static 'image/correct-icon.png' %}" alt="icon" width="30" />
 								<span><b>Designers</b> guruhi</span>
 							</div>
 
@@ -87,12 +89,12 @@
 							</div>
 
 							<div class="mx-2 my-1" id="task-status">
-								<img src="./image/correct-icon-mini.png" alt="icon" width="15"/>
+								<img src="{% static 'image/correct-icon-mini.png' %}" alt="icon" width="15"/>
 								<span>Yakunlangan</span>
 							</div>
 
 							<div class="mx-2 my-1" id="task-points">
-								<img src="./image/star.png" alt="icon" width="15" />
+								<img src="{% static 'image/star.png' %}" alt="icon" width="15" />
 								<span>10</span>
 							</div>
 
