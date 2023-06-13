@@ -1,9 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ProfileUserCreationForm
 # Create your views here.
 
+
 def home(request):
     return render(request, 'auth/profile.html')
+
 
 def register(request):
     form = ProfileUserCreationForm()
@@ -15,7 +21,11 @@ def register(request):
             login(request, u)
             return redirect("/")
         else:
-            # message = "Incorrect username or password!"
-            # messages.add_message(request, messages.ERROR, message)
+            message = "Incorrect username or password!"
+            messages.add_message(request, messages.ERROR, message)
             return render(request, "auth/register.html", {"form": form})
     return render(request, "auth/register.html", {"form": form})
+
+
+class MyLoginView(LoginView, LoginRequiredMixin):
+    template_name = 'auth/login.html'

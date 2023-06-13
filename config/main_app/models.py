@@ -24,7 +24,7 @@ class Group(models.Model):
 
 class Task(models.Model):
     name = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250)    
+    slug = models.SlugField(max_length=250)
     link = models.TextField(blank=True, null=True)
     img = models.ImageField(upload_to='task_images/', blank=True, null=True)
     description = models.TextField(blank=True, null=True)

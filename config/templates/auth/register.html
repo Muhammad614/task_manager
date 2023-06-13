@@ -7,6 +7,7 @@
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 {% endblock style %}
 
 {% block javscript %}
@@ -18,7 +19,7 @@
     <div class="container">
         <div class="header-inner">
             <div class="site-logo">
-                <div class="header__logo">T</div>
+                <a href="/main/" class="header__logo">T</a>
                 <span>Topshiriq Menejeri</span>
             </div>
             <div class="site-time">
@@ -67,7 +68,7 @@
                 <form class="main__form" method="post">
                     {% csrf_token %}
                     <span class="form__title title">Ro'yhatdan o'tish formasi</span>
-                    <label class="main__form--label">
+                    {% comment %} <label class="main__form--label">
                         <input class="main__form--input" type="text" placeholder="Ism & Familya" name="full_name">
                         <input class="main__form--input" type="date" placeholder="Tug'ilgan sana" name="'birthday">
                         <input class="main__form--input" type="text" placeholder="Yo'nalish" name="direction" list="Country">
@@ -81,10 +82,19 @@
                         <input class="main__form--input" type="password" placeholder="Parol takroran *">
                         
                         <button class="main__form--button">Ro'yhatdan o'tish</button>
-                    </label>
+                    </label> {% endcomment %}
+                    {{form.as_p}}
+
+                    <button class="main__form--button" style="width: 100%;">Ro'yhatdan o'tish</button>
                 </form>
             </div>
         </div>
     </div>
 </main>
+
+<style>
+    label {
+        display: block;
+    }
+</style>
 {% endblock content %}

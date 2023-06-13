@@ -7,6 +7,7 @@
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 {% endblock style %}
 
 {% block javscript %}
@@ -28,7 +29,7 @@
 <ul class="sidebar">
   <button class="cross-button"><i class="fas fa-xmark"></i></button>
   <li class="sidebar__item">
-    <a class="sidebar__link" href="#">
+    <a class="sidebar__link" href="/main/">
       <img src="{% static 'image/sidebar-streamline.svg' %}" alt="Streamline">
       <span>Topshiriqlar</span>
     </a>
@@ -67,8 +68,8 @@
         <div class="line"></div>
       </div>
       <div class="site-logo">
-        <div class="header__logo">T</div>
-        <span class="header__name">Topshiriq Menejeri</span>
+          <a href="/main/" class="header__logo">T</a>
+          <span class="header__name">Topshiriq Menejeri</span>
       </div>
       <div class="site-time">
         <p class="day"></p>
@@ -84,9 +85,9 @@
 <main>
   <div class="container">
     <div class="main-inner">
-      <ul class="main__sidebar">
+      <ul class="main__sidebar" style="padding: 0;">
         <li class="main__sidebar--item">
-          <a class="main__sidebar--link" href="#">
+          <a class="main__sidebar--link" href="/main/">
             <img src="{% static 'image/sidebar-streamline.svg' %}" alt="Streamline">
             <span>Topshiriqlar</span>
           </a>
@@ -112,7 +113,7 @@
         <li class="main__sidebar--item">
           <a class="main__sidebar--link main__sidebar--lastchild" href="#">
             <img src="{% static 'image/sidebar-user.svg' %}" alt="User Icon">
-            <span>Chala developer</span>
+            <span>{{request.user.username}}</span>
           </a>
         </li>
       </ul>
@@ -238,13 +239,17 @@
       <div class="main__account">
         <div class="main__account--desc">
           <div class="main__account--userinfo">
-            <img class="main__account--icon" src="">
+            {% if user.img %}
+            <img class="main__account--icon" src="{{request.user.img.url}}">
+            {% else %}
+            <img class="main__account--icon" src="/media/user_images/defaul_user.png">
+            {% endif %}
             <span class="main__account--edit">
               <a href="profile-edit.html" class="fas fa-edit"></a>
-              <p>Tahrirlash</p>
+              <p style="margin-bottom: 0; margin-left: 5px;">Tahrirlash</p>
             </span>
             <span class="main__account--username">
-              <h4>Chala Developer</h4>
+              <h4>{{request.user.username}}</h4>
               <span>online</span>
             </span>
             <span class="small">UI&UX designer</span>
@@ -263,14 +268,22 @@
               <a style="margin: 3% 0px;" href="#">Dizayn</a>
               <a style="margin: 3% 0px;" href="#">Designers A</a>
               <a style="margin: 3% 0px;" href="#">UI&UX dizayner , 6 oy</a>
+              {% if user.is_superuser %}
+              <a style="margin: 3% 0px;" href="#">Super foydalanuvchi</a>
+              {% else %}
               <a style="margin: 3% 0px;" href="#">Oddiy foydalanuvchi</a>
+              {% endif %}
               <a style="margin: 3% 0px;" href="#">
                 <i class="fab fa-telegram"></i>
                 <i class="fab fa-instagram"></i>
                 <i class="fab fa-facebook-f"></i>
               </a>
             </div>
+            
           </div>
+        </div>
+        <div class="logout-btn">
+          <a href="{% url 'account:logout' %}" class="btn btn-primary mt-3">Akkauntdan chiqish</a>
         </div>
         <div class="main__account--notes shadow">
           <span class="title">Eslatmalar !</span>
