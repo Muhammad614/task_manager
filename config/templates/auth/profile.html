@@ -55,7 +55,7 @@
   <li class="sidebar__item">
     <a class="sidebar__link main__sidebar--lastchild" href="#">
       <img src="{% static 'image/sidebar-user.svg' %}" alt="User Icon">
-      <span>Chala developer</span>
+      <span>{{request.user.username}}</span>
     </a>
   </li>
 </ul>

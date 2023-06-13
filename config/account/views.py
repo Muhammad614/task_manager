@@ -25,7 +25,3 @@ def register(request):
             messages.add_message(request, messages.ERROR, message)
             return render(request, "auth/register.html", {"form": form})
     return render(request, "auth/register.html", {"form": form})
-
-
-class MyLoginView(LoginView, LoginRequiredMixin):
-    template_name = 'auth/login.html'
