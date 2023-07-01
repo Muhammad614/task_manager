@@ -21,8 +21,13 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD:task/task/urls.py
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('', include('main_app.urls', namespace='main_app')),
+=======
+    path('', include('account.urls', namespace='account')),
+    path('main/', include('main_app.urls', namespace='main_app'))
+>>>>>>> 59497b7b0164bfa67bccc6bbd74a9fc79af02abd:config/config/urls.py
 ]
 
 if settings.DEBUG:
