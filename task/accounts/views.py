@@ -18,6 +18,16 @@ class ProfilePage(LoginRequiredMixin, View):
             return redirect('accounts:login')
 
 
+def ProfileUpdateView(request, id):
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST)
+        if form.is_valid:
+            form.save()
+    else:
+        form = ProfileUpdateForm()
+    return render(request, 'auth/profile_edit.html', {'form': form})
+
+
 def login_page(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -61,16 +71,17 @@ def registration_page(request):
     return render(request, 'auth/registration.html', context)
 
 
-class ProfileUpdateView(UpdateView):
-    model = Profile
-    form_class = ProfileUpdateForm
-    template_name = 'auth/profile_edit.html'
-    success_url = reverse_lazy("accounts:profile")
+# class ProfileUpdateView(UpdateView):
+#     model = Profile
+#     form_class = ProfileUpdateForm
+#     template_name = 'auth/profile_edit.html'
+#     slug_field = "username"
+#     slug_url_kwarg = "username"
+#     success_url = reverse_lazy("accounts:profile")
+#     # def get_context_data(self, **args):
+#     #     context = super(ProfileUpdateView, self).get_context_data(**args)
 
-    def get_context_data(self, **kwargs):
-        context = super(ProfileUpdateView, self).get_context_data(**kwargs)
-
-        context.update({
-            'object': self.get_object,
-        })
-        return context
+#     #     context.update({
+#     #         'object': self.get_object,
+#     #     })
+#     #     return context

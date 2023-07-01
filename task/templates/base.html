@@ -1,0 +1,220 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>Task list</title>
+</head>
+<div class="responsive-sidebar">
+	<button class="cross" onclick="removeActiveClass()">
+		<i class="fas fa-xmark"></i>
+	</button>
+
+	<a class="" href="/">
+		<img src="{% static 'image/topshiriq-icon.png' %}" alt="icon" width="25" />
+		<span class="fs-5 mx-2">Topshiriqlar</span>
+	</a>
+	<a class="" href="./chat.html">
+		<img src="{% static 'image/chat-icon.png' %}" alt="icon" width="25" />
+		<span class="fs-5 mx-2">Chat</span>
+	</a>
+	<a class="" href="./task-detail.html">
+		<img src="{% static 'image/jamoa-icon.png' %}" alt="icon" width="25" />
+		<span class="fs-5 mx-2">Jamoa</span>
+	</a>
+	<a class="" href="./calendar.html">
+		<img src="{% static 'image/calendar-icon.png' %}" alt="icon" width="25" />
+		<span class="fs-5 mx-2">Kalendar</span>
+	</a>
+	<a class="" href="./author-pages/profile.html">
+		<img src="{% static 'image/user-icon.png' %}" alt="icon" width="25" />
+		<span class="fs-5 mx-2">Chala Developer</span>
+	</a>
+</div>
+
+<body class="h-100 d-flex flex-column justify-content-between body">
+	<!-- Header start -->
+	<header class="py-2">
+		<div class="container-fluid px-3">
+			<div class="lorem">
+
+				<button class="burger" onclick="activeSidebarFunction()">
+					<div class="line"></div>
+					<div class="line"></div>
+					<div class="line"></div>
+				</button>
+
+				<div class="logo-and-filters">
+					<a href="/" class="logo">
+						<img src="{% static 'image/logo.png' %}" alt="Site logo" width="250" />
+					</a>
+
+					<div class="responsive-logo">T</div>
+
+					{% if inprocess_tasks %}
+          <ul class="nav nav-pills mb-3 nav-list d-flex list-unstyled m-0 m-auto my-3 my-sm-0 filter-by-status"
+						id="pills-tab" role="tablist">
+						<li class="nav-item ms-md-5 mx-1 mx-sm-3" role="presentation">
+							<button class="nav-link active slideshow-btn" id="pills-home-tab" data-bs-toggle="pill"
+								data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+								aria-selected="true">Barchasi</button>
+						</li>
+
+						<li class="nav-item" role="presentation">
+							<button class="nav-link slideshow-btn" id="pills-profile-tab" data-bs-toggle="pill"
+								data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+								aria-selected="false">Yakunlanganlari</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link slideshow-btn" id="pills-contact-tab" data-bs-toggle="pill"
+								data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+								aria-selected="false">Bajarilmoqda</button>
+						</li>
+					</ul>
+          {% endif %}
+				</div>
+
+				<div class="fs-5 now-date-js">
+					<span class="now-day-js"></span>
+					<span class="now-hour-js fw-bold"></span>
+					<span class="now-minute-js fw-bold"></span>
+					<span class="now-second-js fw-bold"></span>
+				</div>
+			</div>
+
+		</div>
+		</div>
+	</header>
+
+  <!-- Main start -->
+	<main class="flex-grow-1">
+		<div class="container-fluid px-3">
+			<div class="row">
+				<div class="col-12 col-md-2 col-sm-5 d-flex d-md-block flex-wrap justify-content-between sidebar">
+					<a class="d-flex align-items-center my-2 my-md-5 px-3 text-decoration-none text-primary" href="/">
+						<img src="{% static 'image/topshiriq-icon.png' %}" alt="icon" width="25" />
+						<span class="fs-5 mx-3">Topshiriqlar</span>
+					</a>
+					<a class="d-flex align-items-center my-2 my-md-5 px-3 text-decoration-none text-black-50" href="./chat.html">
+						<img src="{% static 'image/chat-icon.png' %}" alt="icon" width="25" />
+						<span class="fs-5 mx-3">Chat</span>
+					</a>
+					<a class="d-flex align-items-center my-2 my-md-5 px-3 text-decoration-none text-black-50"
+						href="./task-detail.html">
+						<img src="{% static 'image/jamoa-icon.png' %}" alt="icon" width="25" />
+						<span class="fs-5 mx-3">Jamoa</span>
+					</a>
+					<a class="d-flex align-items-center my-2 my-md-5 px-3 text-decoration-none text-black-50"
+						href="./calendar.html">
+						<img src="{% static 'image/calendar-icon.png' %}" alt="icon" width="25" />
+						<span class="fs-5 mx-3">Kalendar</span>
+					</a>
+          {% if user.is_authenticated %}
+          <a class="d-flex align-items-center my-2 my-md-5 px-3 text-decoration-none text-black fw-medium"
+          href="{% url 'accounts:profile' %}">
+          <img src="{% static 'image/user-icon.png' %}" alt="icon" width="25" />
+          <span class="fs-5 mx-3">Chala Developer</span>
+          </a>
+          {% endif %}
+				</div>
+
+  {% block content %}
+  {% endblock %}
+
+  <!-- Footer start -->
+	<footer class="py-4 border-top border-2">
+		<div class="container-fluid px-3">
+			<div class="d-flex justify-content-between align-items-center">
+				<span>RoboCode IT Academy 2023</span>
+
+				<div class="icons d-flex align-items-center">
+					<a class="text-decoration-none mx-2" href="#">
+						<img src="{% static 'image/facebook-icon.png' %}" alt="icon" />
+					</a>
+					<a class="text-decoration-none mx-2" href="#">
+						<img src="{% static 'image/instagram-icon.png' %}" alt="icon" />
+					</a>
+					<a class="text-decoration-none mx-2" href="#">
+						<img src="{% static 'image/telegram-icon.png' %}" alt="icon" />
+					</a>
+					<a class="text-decoration-none mx-2" href="#">
+						<img src="{% static 'image/youtube-icon.png' %}" alt="icon" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	</div>
+
+	<style>
+		.slideshow-btn {
+			color: rgba(0, 0, 0, 0.5);
+			font-size: 20px;
+		}
+
+		.slideshow-btn.active {
+			background: none !important;
+			color: #000 !important;
+			border-bottom: 2px solid #000;
+			border-radius: 0;
+		}
+
+		.slideshow-btn:active {
+			color: rgba(0, 0, 0, 0.5);
+		}
+
+		.slideshow-btn:hover {
+			color: #000;
+		}
+
+		#task {
+			width: 100% !important;
+			display: flex !important;
+			justify-content: space-between !important;
+			align-items: center !important;
+			padding: 10px !important;
+			margin-top: 20px !important;
+			flex-wrap: wrap !important;
+		}
+
+		@media only screen and (max-width: 800px) {
+			#task {
+				flex-wrap: wrap;
+			}
+
+			#task-group {
+				order: 0 !important;
+			}
+
+			#task-status {
+				order: 4 !important;
+			}
+
+			#task-date {
+				order: 1 !important;
+			}
+
+			#task-points {
+				order: 3 !important;
+			}
+
+			#task-name {
+				order: 5 !important;
+			}
+		}
+	</style>
+
+	<script src="{% static 'js/main.js' %}"></script>
+	<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

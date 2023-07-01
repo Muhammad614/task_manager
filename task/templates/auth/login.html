@@ -1,76 +1,93 @@
-{% load static %}
+{% load static  %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		<title>Login</title>
+	</head>
+	<body class="h-100 d-flex flex-column justify-content-between">
+		<!-- Header- start -->
+		<header class="py-2">
+			<div class="container-fluid px-3">
+				<div
+					class="d-flex justify-content-between align-items-center flex-wrap flex-lg-nowrap"
+				>
+					<a href="/">
+						<img src="{% static 'image/logo.png' %}" alt="Site logo" width="250" />
+					</a>
+					<div class="fs-5 ms-auto now-date-js">
+						<span class="now-day-js"></span>
+						<span class="now-hour-js fw-bold"></span>
+						<span class="now-minute-js fw-bold"></span>
+						<span class="now-second-js fw-bold"></span>
+					</div>
+				</div>
+			</div>
+		</header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registratition</title>
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-    <header>
-        <div class="container">
-            <div class="header-inner">
-                <div class="site-logo">
-                    <div class="header__logo">T</div>
-                    <span>Topshiriq Menejeri</span>
-                </div>
-                <div class="site-time">
-                    <p class="day"></p>
-                    <p class="month"></p>
-                    <p class="year" style="margin: 0 5px;"></p>
-                    <b class="hour"></b>
-                    <b class="minute"></b>
-                    <b class="second"></b>
-                </div>
+    <!-- Main start -->
+    <main class="flex-grow-1 py-5">
+      <div class="container-fluid px-3">
+        <div class="row">
+          <!-- Login img -->
+          <div class="col-12 col-md-6">
+            <img class="img-fluid" src="{% static 'image/login-image.png' %}" alt="img">
+          </div>
+          <!-- Login form -->
+          <div class="col-12 col-md-6 mt-5">
+            <div class="row">
+              <div class="col-11 col-sm-9 col-md-10 col-xl-8 mx-auto shadow rounded-4 p-4">
+                <h2 class="fs-4">Kirish  formasi</h2>
+                <p>Ro’yhatdan o’tish vaqtida foydalangan telefon raqamingiz va parolingizdan foydalanib tizimga kiring.</p>
+                <form method="post">
+									{% csrf_token %}
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Telefon" required name="username">
+                    <label for="floatingInput">Telefon</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Parol *" required name="password">
+                    <label for="floatingPassword">Parol *</label>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Kirish</button>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
-    </header>
-    <main>
-        <div class="container">
-            <div class="main-inner">
-                <div class="main__left">
-                    <img class="main__image" src="{% static 'image/Login.svg' %}" alt="Login image">
-                </div>
-                <div class="main__right">
-                    <form class="main__form" method="post">
-                        {% csrf_token %}
-                        <span class="form__title title">Kirish formasi </span>
-                        <p class="form__text">Ro'yhatdan o'tish vaqtida foydalangan Login va parolingizdan
-                            foydalanib tizimga kiring.</p>
-                        <label class="main__form--label">
-                            <input class="main__form--input" type="text" placeholder="Telefon *" name="username">
-                            <input class="main__form--input" type="password" placeholder="Parol *" name="password">
-                            <span>Sizda akkaunt yo'qmi? <a href="{% url 'accounts:registration' %}">Ro'yxatdan
-                                    o'tish</a>
-                            </span>
-                            <button class="main__form--button">Kirish</button>
-                        </label>
-                    </form>
-                </div>
-            </div>
-        </div>
+      </div>
     </main>
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <span>RoboCode IT Academy 2023</span>
-                <div class="footer__social-networks">
-                    <i class="footer__apps fab fa-facebook"></i>
-                    <i class="footer__apps fab fa-instagram"></i>
-                    <i class="footer__apps fab fa-telegram"></i>
-                    <i class="footer__apps fab fa-youtube"></i>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script src="{% static 'js/script.js' %}"></script>
-</body>
 
+		<!-- Footer start -->
+		<footer class="py-4 border-top border-2">
+			<div class="container-fluid px-3">
+				<div class="d-flex justify-content-between align-items-center">
+					<span>RoboCode IT Academy 2023</span>
+
+					<div class="icons d-flex align-items-center">
+						<a class="text-decoration-none mx-2" href="#">
+							<img src="../images/facebook-icon.png" alt="icon" />
+						</a>
+						<a class="text-decoration-none mx-2" href="#">
+							<img src="../images/instagram-icon.png" alt="icon" />
+						</a>
+						<a class="text-decoration-none mx-2" href="#">
+							<img src="../images/telegram-icon.png" alt="icon" />
+						</a>
+						<a class="text-decoration-none mx-2" href="#">
+							<img src="../images/youtube-icon.png" alt="icon" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="../js/bootstrap.bundle.min.js"></script>
+		<script src="../js/main.js"></script>
+	</body>
 </html>

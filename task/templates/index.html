@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+				<div class="tab-content col-md-12 col-lg-10" id="pills-tabContent">
+					<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+						<div class="col-12 col-md-12 pt-4 pe-4">
+
+							{% for task in all_tasks %}
+							<div id="task" class="shadow py-3 rounded-4 my-2">
+								<div class="mx-2 my-1" id="task-group">
+									<img src="{% static 'image/correct-icon.png' %}" alt="icon" width="30" />
+									<span><b>{{task.group.name}}</b> guruhi</span>
+								</div>
+
+								<div class="mx-2 my-1" id="task-name">
+									<span>{{task.name}}</span>
+								</div>
+
+								{% if task.status == 'free' %}
+								<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-status">
+									<img src="{% static 'image/cross-circle-icon.png' %}" alt="icon" width="20" height="20"/>
+									<span>Boshlanmagan</span>
+								</div>
+
+								{% elif task.status == 'doned' %}
+								<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-status">
+										<img src="{% static 'image/correct-icon-mini.png' %}" alt="icon" width="20" height="20"/>
+										<span>Yakunlangan</span>
+									</div>
+								{% else %}
+								<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-status">
+									<img src="{% static 'image/cross-circle-icon.png' %}" alt="icon" width="20" height="20"/>
+									<span>Bajarilmoqda</span>
+								</div>
+								{% endif %}
+
+								<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-points">
+									<img src="{% static 'image/star.png ' %}" alt="icon" width="15" height="15"/>
+									<span>10</span>
+								</div>
+
+								<div class="mx-2 my-1" id="task-date">
+									<span>31 mart 2023</span>
+								</div>
+							</div>
+							{% endfor %}
+
+						</div>
+					</div>
+					<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+						{% for task in doned_tasks %}
+						<div id="task" class="shadow py-3 rounded-4 my-2">
+							<div class="mx-2 my-1" id="task-group">
+								<img src="{% static 'image/correct-icon.png' %}" alt="icon" width="30" />
+								<span><b>{{task.group.name}}</b> guruhi</span>
+							</div>
+
+							<div class="mx-2 my-1" id="task-name">
+								<span>{{task.name}}</span>
+							</div>
+
+							{% if task.status == 'free' %}
+							<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-status">
+								<img src="{% static 'image/cross-circle-icon.png' %}" alt="icon" width="20" height="20"/>
+								<span>Boshlanmagan</span>
+							</div>
+
+							{% elif task.status == 'doned' %}
+							<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-status">
+									<img src="{% static 'image/correct-icon-mini.png' %}" alt="icon" width="20" height="20"/>
+									<span>Yakunlangan</span>
+								</div>
+							{% else %}
+							<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-status">
+								<img src="{% static 'image/cross-circle-icon.png' %}" alt="icon" width="20" height="20"/>
+								<span>Bajarilmoqda</span>
+							</div>
+							{% endif %}
+
+							<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-points">
+								<img src="{% static 'image/star.png ' %}" alt="icon" width="15" height="15"/>
+								<span>10</span>
+							</div>
+
+							<div class="mx-2 my-1" id="task-date">
+								<span>31 mart 2023</span>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+					<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+						{% for task in inprocess_tasks %}
+						<div id="task" class="shadow py-3 rounded-4 my-2">
+							<div class="mx-2 my-1" id="task-group">
+								<img src="{% static 'image/correct-icon.png' %}" alt="icon" width="30" />
+								<span><b>{{task.group.name}}</b> guruhi</span>
+							</div>
+
+							<div class="mx-2 my-1" id="task-name">
+								<span>{{task.name}}</span>
+							</div>
+
+							{% if task.status == 'free' %}
+							<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-status">
+								<img src="{% static 'image/cross-circle-icon.png' %}" alt="icon" width="20" height="20"/>
+								<span>Boshlanmagan</span>
+							</div>
+
+							{% elif task.status == 'doned' %}
+							<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-status">
+									<img src="{% static 'image/correct-icon-mini.png' %}" alt="icon" width="20" height="20"/>
+									<span>Yakunlangan</span>
+								</div>
+							{% else %}
+							<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-status">
+								<img src="{% static 'image/cross-circle-icon.png' %}" alt="icon" width="20" height="20"/>
+								<span>Bajarilmoqda</span>
+							</div>
+							{% endif %}
+
+							<div class="mx-2 my-1 d-flex justify-content-start align-items-center gap-1" id="task-points">
+								<img src="{% static 'image/star.png ' %}" alt="icon" width="15" height="15"/>
+								<span>10</span>
+							</div>
+
+							<div class="mx-2 my-1" id="task-date">
+								<span>31 mart 2023</span>
+							</div>
+						</div>
+						{% endfor %}
+
+						
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="d-flex justify-content-end me-5 mt-5" aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item">
+						<a class="page-link" href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</main>
+
+{% endblock %}

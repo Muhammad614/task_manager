@@ -26,6 +26,7 @@ class RegistrationForm(UserCreationForm):
             'password1': forms.PasswordInput(),
             'password2': forms.PasswordInput(),
         }
+        
 class ProfileUpdateForm(forms.ModelForm):
     
     class Meta:

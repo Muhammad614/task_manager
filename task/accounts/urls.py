@@ -16,7 +16,6 @@ urlpatterns = [
     # registration
     path('registration/', views.registration_page, name='registration'),
     
-    # profile_edit
-    path('profile_edit/<pk>', views.ProfileUpdateView.as_view(), name='profile_edit'),
+    # profile_edit  
+    path('profile_edit/<int:id>/', views.ProfileUpdateView, name='profile_edit'),
 ]
-

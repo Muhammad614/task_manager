@@ -23,6 +23,12 @@ class Group(models.Model):
 
 
 class Task(models.Model):
+    TASK_STATUS =(
+        ("doned", "Doned"),
+        ("inprocess", "Inprocess"),
+        ("free", "Free")
+    )
+
     name = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
     link = models.TextField(blank=True, null=True)
@@ -30,9 +36,10 @@ class Task(models.Model):
     description = models.TextField(blank=True, null=True)
     group = models.ForeignKey(
         Group, on_delete=models.CASCADE, related_name='tasks')
-    added = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    doned_at = models.DateTimeField(blank=True, null=True)
     deadline = models.DateTimeField(auto_now_add=False)
-    status = models.BooleanField(default=False)
+    status = models.CharField(choices=TASK_STATUS, default='free', max_length=50)
 
     def __str__(self):
         return str(self.name)
